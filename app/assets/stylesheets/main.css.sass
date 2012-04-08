@@ -1,0 +1,33 @@
+@import 'roots'
+
++global-reset // Resets page styles
++framework
+// ^ Loads roots styles onto default elements, setting up beautiful defaults.
+// Comment this line out if you want to start totally from scratch - all the
+// roots mixins will still be available for you.
+
+// ---------------------------------------------
+// CSS for the intro page. By all means delete
+// ---------------------------------------------
+
+body
+  background: #EEEEEE url(/assets/noise.png)
+
+#main
+  +round(3px)
+  border: 1px solid #CCCCCC
+  max-width: 860px
+  margin: 30px auto
+  padding: 20px 40px
+  background: #fff
+
+  +when(1010)
+    margin: 30px 30px
+
+  h1
+    text-align: center
+
+  h4
+    margin-top: 25px
+    padding-bottom: 5px
+    border-bottom: 1px solid #D7D7D7
