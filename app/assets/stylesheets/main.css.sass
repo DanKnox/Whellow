@@ -13,21 +13,31 @@
 body
   background: #EEEEEE url(/assets/noise.png)
 
-#main
-  +round(3px)
-  border: 1px solid #CCCCCC
-  max-width: 860px
-  margin: 30px auto
-  padding: 20px 40px
-  background: #fff
-
-  +when(1010)
-    margin: 30px 30px
-
-  h1
-    text-align: center
-
-  h4
-    margin-top: 25px
-    padding-bottom: 5px
-    border-bottom: 1px solid #D7D7D7
+#clock
+  .network-line
+    border: 3px solid #333
+    height: 300px
+    +round(155px)
+    width: 300px
+    position: relative
+    .circle
+      rotation: 0
+      +prefix(transform-origin, center bottom)
+      width: 5px
+      height: 50%
+      position: absolute
+      left: 50%
+      +round(5px)
+      &:after
+        border: 3px solid #333
+        height: 25px
+        +round(15px)
+        width: 25px
+        display: block
+        position: absolute
+        top: -15px
+        left: -13px
+        content: ''
+    &#facebook
+      .circle:after
+        background-color: rgb(59, 89, 152)
