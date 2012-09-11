@@ -1,5 +1,7 @@
 <div id='clock'>
 	<div id='facebook' class='network-line'>
-		<div ng-repeat='post in facebook' class='circle' rotate></div>
+		<div ng-repeat='post in facebook' class='arm' title='{{ post.data.message }}' rotate>
+			<div class='circle'></div>
+		</div>
 	</div>
 </div>
