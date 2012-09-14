@@ -1,9 +1,20 @@
 HomeController = ($scope, $window, $http) ->
   $http.get('/posts').success (posts) ->
-    $scope.posts = posts
+    $scope.posts = _.map posts, (obj) ->
+      if /@face/.test obj.idr
+        obj.username = obj.data.from.name
+        obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
+        obj.service  = 'facebook'
+      else if /@twit/.test obj.idr
+        obj.username = obj.data.user.name
+        obj.picture  = obj.data.user.profile_image_url
+        obj.service  = 'twitter'
+      obj
     $scope.facebook = _.filter posts, (obj) -> /@face/.test obj.idr
+    $scope.twitter  = _.filter posts, (obj) -> /@twit/.test obj.idr
 
 angular.module('whellow', [])
+  .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
   .directive('rotate', () -> (scope, element, attrs) ->
     [hour, minute] = moment(scope.post.at).format('h m').split(' ')
     rotation = (30 * parseInt(hour)) + (30 / (1.66 * parseInt(minute)))

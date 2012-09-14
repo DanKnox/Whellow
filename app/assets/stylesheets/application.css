@@ -10,5 +10,7 @@
  *
  *= require_self
  *= require main
+ *= require master
+ *= require zocial
  *= require _roots
 */
