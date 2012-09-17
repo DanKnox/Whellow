@@ -147,6 +147,7 @@ textarea {
     height: 75px;
     position: fixed;
     background: url(/assets/header_bg.png) repeat;
+    z-index: 4;
 
 }
 
@@ -244,9 +245,10 @@ ul.list_left {
 
 
 #wrap {
-    width: 800px;
+    width: 1024px;
     height: 100%;
     margin: 0 auto;
+    position: relative;
 
 }
 

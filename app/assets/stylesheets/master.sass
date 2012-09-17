@@ -10,14 +10,28 @@
 // CSS for the intro page. By all means delete
 // ---------------------------------------------
 
+#clock-container
+  position: absolute
+  margin: 200px 300px
+  right: 0
+
 #clock
+  position: relative
   .network-line
     border: 3px solid #333
-    height: 300px
-    +round(155px)
-    width: 300px
-    position: relative
-    margin: 200px
+    position: absolute
+    &#facebook
+      height: 300px
+      width: 300px
+      +round(155px)
+      z-index: 3
+    &#twitter
+      height: 500px
+      width: 500px
+      top: -100px
+      left: -100px
+      +round(250px)
+      z-index: 2
     .tooltip
       position: absolute
       width: 45px
@@ -59,3 +73,6 @@
     &#facebook
       .circle
         background-color: rgb(59, 89, 152)
+    &#twitter
+      .circle
+        background-color: #4099FF

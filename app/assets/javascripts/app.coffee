@@ -1,19 +1,26 @@
-HomeController = ($scope, $window, $http) ->
-  $http.get('/posts').success (posts) ->
-    $scope.posts = _.map posts, (obj) ->
-      if /@face/.test obj.idr
-        obj.username = obj.data.from.name
-        obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
-        obj.service  = 'facebook'
-      else if /@twit/.test obj.idr
-        obj.username = obj.data.user.name
-        obj.picture  = obj.data.user.profile_image_url
-        obj.service  = 'twitter'
-      obj
-    $scope.facebook = _.filter posts, (obj) -> /@face/.test obj.idr
-    $scope.twitter  = _.filter posts, (obj) -> /@twit/.test obj.idr
+HomeController = ($scope, $window, $http, $cookies) ->
+  unless $cookies.access_token
+    $scope.auth = 'false'
+  else
+    $scope.auth = 'true'
+    $scope.logout = () ->
+      delete $cookies.access_token
+      $window.location.reload true
+    $http.get('/posts').success (posts) ->
+      $scope.posts = _.map posts, (obj) ->
+        if /@face/.test obj.idr
+          obj.username = obj.data.from.name
+          obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
+          obj.service  = 'facebook'
+        else if /@twit/.test obj.idr
+          obj.username = obj.data.user.name
+          obj.picture  = obj.data.user.profile_image_url
+          obj.service  = 'twitter'
+        obj
+      $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
+      $scope.twitter  = _.filter posts, (obj) -> obj.service == 'twitter'
 
-angular.module('whellow', [])
+angular.module('whellow', ['ngCookies'])
   .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
   .directive('rotate', () -> (scope, element, attrs) ->
     [hour, minute] = moment(scope.post.at).format('h m').split(' ')
@@ -36,7 +43,12 @@ angular.module('whellow', [])
           off_top  = circle.offset().top
           left = off_left - element.parent().offset().left
           top = off_top - element.parent().offset().top - 25
-          element.after '<div class="tooltip" style="left:' + left + 'px;top:' + top + 'px">' + scope.post.data.message + '</div>'
+          switch scope.post.service
+            when 'facebook'
+              message = scope.post.data.message
+            when 'twitter'
+              message = scope.post.data.text
+          element.after '<div class="tooltip" style="left:' + left + 'px;top:' + top + 'px">' + message + '</div>'
           circle.hover(
             () -> element.next().animate { opacity: 0.75 }, 250, 'linear'
             () -> element.next().animate { opacity: 0 }, 250, 'linear'
