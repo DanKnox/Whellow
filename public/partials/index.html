@@ -60,7 +60,7 @@
               <div ng-repeat='post in posts' class="feed_item" style="padding-top:62px" id='id{{post.id}}'>    
                 <img align="left" src="{{ post.picture }}" style="margin:2px 0 0 -34px; border-radius:3px;" width="27" height="27" alt=""> 
                 <h1>{{ post.username }} <!-- <span style="font-style: italic; font-weight: normal;">Uploaded</span> <a href="#" class="button small pop1">Link to post</a></h1> -->
-                <p>{{ post.data.message }}</p>  
+                <p>{{ post.message }}</p>  
                 <span style="background-color: #d6d1c6; padding: 5px; color: #bbb5a9; font-size:11px; border-radius: 3px; -moz-border-radius: -webkit-3px; border-radius: 3px; position:relative; top:-5px; "><span moment></span> via {{ post.service }}</span>
               </div>
             </div>

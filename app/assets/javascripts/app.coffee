@@ -12,10 +12,12 @@ HomeController = ($scope, $window, $http, $cookies) ->
           if /@face/.test obj.idr
             obj.username = obj.data.from.name
             obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
+            obj.message  = obj.data.message
             obj.service  = 'facebook'
           else if /@link/.test obj.idr
             obj.username = obj.data.updateContent.firstName + ' '  + obj.data.updateContent.lastName
             obj.picture  = obj.data.updateContent.pictureUrl
+            obj.message  = obj.data.updateContent.currentStatus
             obj.service  = 'linkedin'
           obj
         $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
@@ -44,12 +46,7 @@ angular.module('whellow', ['ngCookies'])
           off_top  = circle.offset().top
           left = off_left - element.parent().offset().left
           top = off_top - element.parent().offset().top - 25
-          switch scope.post.service
-            when 'facebook'
-              message = scope.post.data.message
-            when 'twitter'
-              message = scope.post.data.text
-          element.after '<div class="tooltip" style="left:' + left + 'px;top:' + top + 'px">' + message + '</div>'
+          element.after '<div class="tooltip" style="left:' + left + 'px;top:' + top + 'px">' + scope.post.message + '</div>'
           circle.hover(
             () -> element.next().animate { opacity: 0.75 }, 250, 'linear'
             () -> element.next().animate { opacity: 0 }, 250, 'linear'
