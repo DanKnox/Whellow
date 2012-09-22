@@ -7,4 +7,5 @@ class User
   field :name
   field :email
   field :token
+  field :uid
 end

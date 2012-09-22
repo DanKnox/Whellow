@@ -4,6 +4,7 @@ HomeController = ($scope, $window, $http, $cookies) ->
       $scope.auth = 'false'
     else
       $scope.auth = 'true'
+      $scope.user = rsp.user
       $scope.logout = () ->
         delete $cookies.access_token
         $window.location = '/signout'

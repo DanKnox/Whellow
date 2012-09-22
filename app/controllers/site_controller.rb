@@ -15,10 +15,16 @@ class SiteController < ApplicationController
   def callback
   	auth = request.env['omniauth.auth']
   	cookies[:access_token] = auth.credentials.token
+    auto_login User.where(uid: auth.uid).first if !logged_in?
     current_user.token = auth.credentials.token
+    current_user.uid = auth.uid
     current_user.save
-    binding.pry
   	redirect_to '/'
+  end
+
+  def settings
+    current_user.update_attributes params[:user]
+    redirect_to '/'
   end
 
   def signup
@@ -34,7 +40,7 @@ class SiteController < ApplicationController
   end
 
   def logged_in
-    render json: { authed: logged_in? }
+    render json: { authed: logged_in?, user: current_user }
   end
 
   def signout

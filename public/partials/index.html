@@ -16,8 +16,11 @@
             <form action='/signin'>
               <input autocomplete="off" id="user_email" name="email" placeholder="Email" size="30" type="email" />
               <input autocomplete="off" id="user_password" name="password" placeholder="Password" size="30" type="password" />
-              <button class="blue_button" href="/signup">Submit</a>
+              <button class="blue_button" href="/signup">Submit</button>
             </form>
+            Or, if you forgot your password, you can sign in with:
+            <a href='/auth/singly?service=facebook'>Facebook</a>
+            <a href='/auth/singly?service=linkedin'>LinkedIn</a>
         </div>
         <div id='signup' style='display:none'>
           <form action='/signup'>
@@ -25,7 +28,7 @@
             <input autocomplete="off" id="user_email" name="user[email]" placeholder="Email" size="30" type="email" />
             <input autocomplete="off" id="user_password" name="user[password]" placeholder="Password" size="30" type="password" />
             <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Retype-Password" size="30" type="password" />
-            <button class="blue_button" href="/signup">Submit</a>
+            <button class="blue_button" href="/signup">Submit</button>
           </form>
         </div>
     </div>
@@ -34,6 +37,8 @@
 
 <div id="header">
         <ul class="list_left">
+            <li><a class="brown_button" href="/">Home</a></li>
+            <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#settings_popup').bPopup()">Settings</a></li>
             <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#services_popup').bPopup()">Connect services</a></li>
             <li><a class="brown_button" href="javascript:void(0)" ng-click='logout()'>Logout</a></li>
             <li><input autocomplete="off" id="user_email" name="user[email]" placeholder="Search" size="30" type="email" /></li>
@@ -66,12 +71,21 @@
             </div>
 
         
+        <div id="settings_popup" style='display:none'>
+            <h1>Settings</h1>
+            <form action='/settings'>
+              <input autocomplete="off" id="user_name" name="user[name]" placeholder="Name" size="30" type="text" ng-model='user.name' />
+              <input autocomplete="off" id="user_email" name="user[email]" placeholder="Email" size="30" type="email" ng-model='user.email' />
+              <input autocomplete="off" id="user_password" name="user[password]" placeholder="Password" size="30" type="password" />
+              <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Password" size="30" type="password" />
+              <button class="blue_button" href="/settings">Submit</a>
+            </form>
+        </div> 
 
         <div id="services_popup" style='display:none'>
             <h1>Connect to one of the following services</h1>
             <a href="/auth/singly?service=facebook" class="zocial facebook">Connect to Facebook</a>
-            <a href="/auth/singly?service=twitter" class="zocial twitter">Conect to Twitter</a>
-            <!-- <a href="#" class="zocial linkedin">Connect to LinkedIn</a> -->
+            <a href="/auth/singly?service=linkedin" class="zocial linkedin">Conect to LinkedIn</a>
         </div> 
 
         <div id="create_group" style='display:none'>
