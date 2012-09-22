@@ -2,8 +2,8 @@
   <div ng-switch-when='false'>
     <div id="header">
         <ul class="list_left">
-  <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#signin').bPopup()">Signin</a></li>
-            
+          <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#signup').bPopup()">Signup</a></li>
+          <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#signin').bPopup()">Signin</a></li>
         </ul>
     </div>
     <div class="clear"></div>    
@@ -13,8 +13,20 @@
 
         <div id="signin" style='display:none'>
             <h1>Signin</h1>
-            <a href='/auth/singly?service=facebook'>Facebook</a>
-            <a href='/auth/singly?service=twitter'>Twitter</a>
+            <form action='/signin'>
+              <input autocomplete="off" id="user_email" name="email" placeholder="Email" size="30" type="email" />
+              <input autocomplete="off" id="user_password" name="password" placeholder="Password" size="30" type="password" />
+              <button class="blue_button" href="/signup">Submit</a>
+            </form>
+        </div>
+        <div id='signup' style='display:none'>
+          <form action='/signup'>
+            <input autocomplete="off" id="user_name" name="user[name]" placeholder="Full name" size="30" type="text" />
+            <input autocomplete="off" id="user_email" name="user[email]" placeholder="Email" size="30" type="email" />
+            <input autocomplete="off" id="user_password" name="user[password]" placeholder="Password" size="30" type="password" />
+            <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Retype-Password" size="30" type="password" />
+            <button class="blue_button" href="/signup">Submit</a>
+          </form>
         </div>
     </div>
   </div>
@@ -37,15 +49,15 @@
               <div class='circle'></div>
             </div>
           </div>
-          <div id='twitter' class='network-line'>
-            <div ng-repeat='post in twitter' class='arm' rotate>
+          <div id='linkedin' class='network-line'>
+            <div ng-repeat='post in linkedin' class='arm' rotate>
               <div class='circle'></div>
             </div>
           </div>
         </div>
       </div>
             <div id="feed">      
-              <div ng-repeat='post in posts' class="feed_item" style="padding-top:62px">    
+              <div ng-repeat='post in posts' class="feed_item" style="padding-top:62px" id='id{{post.id}}'>    
                 <img align="left" src="{{ post.picture }}" style="margin:2px 0 0 -34px; border-radius:3px;" width="27" height="27" alt=""> 
                 <h1>{{ post.username }} <!-- <span style="font-style: italic; font-weight: normal;">Uploaded</span> <a href="#" class="button small pop1">Link to post</a></h1> -->
                 <p>{{ post.data.message }}</p>  
