@@ -8,10 +8,11 @@ group :assets do
   gem 'uglifier'
 end
 
+gem 'sqlite3'
+gem 'pg'
 gem 'jquery-rails'
 gem 'puma'
 gem 'sorcery'
-gem 'mongoid'
 gem 'bson_ext'
 gem 'decent_exposure'
 gem 'inherited_resources'

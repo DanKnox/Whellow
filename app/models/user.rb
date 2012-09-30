@@ -1,11 +1,4 @@
-class User
-  include Mongoid::Document
-  include Sorcery::Model
-  include Sorcery::Model::Adapters::Mongoid
+class User < ActiveRecord::Base
   authenticates_with_sorcery!
-
-  field :name
-  field :email
-  field :token
-  field :uid
+  attr_accessible :name, :email, :token, :uid
 end
