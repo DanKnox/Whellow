@@ -9,7 +9,6 @@ group :assets do
 end
 
 gem 'mongoid'
-gem 'sqlite3'
 gem 'pg'
 gem 'jquery-rails'
 gem 'puma'
