@@ -94,12 +94,6 @@ GEM
     omniauth (1.1.1)
       hashie (~> 1.2)
       rack
-    omniauth-oauth2 (1.0.2)
-      oauth2 (~> 0.6.0)
-      omniauth (~> 1.0)
-    omniauth-singly (0.0.1)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     origin (1.0.9)
     polyglot (0.3.3)
     pony (1.4)
@@ -180,7 +174,6 @@ DEPENDENCIES
   juggernaut
   mongoid
   omniauth
-  omniauth-singly
   pony
   pry
   puma
