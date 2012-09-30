@@ -13,13 +13,13 @@ class SiteController < ApplicationController
   end
 
   def callback
-  	auth = request.env['omniauth.auth']
-  	cookies[:access_token] = auth.credentials.token
+    auth = request.env['omniauth.auth']
+    cookies[:access_token] = auth.credentials.token
     auto_login User.where(uid: auth.uid).first if !logged_in?
     current_user.token = auth.credentials.token
     current_user.uid = auth.uid
     current_user.save
-  	redirect_to '/'
+    redirect_to '/'
   end
 
   def settings
