@@ -34,8 +34,7 @@ class SiteController < ApplicationController
   end
 
   def signin
-    login( params[:email], params[:password] )
-    cookies[:access_token] = current_user.token
+    cookies[:access_token] = current_user.token if login( params[:email], params[:password] )
     redirect_to '/'
   end
 
