@@ -49,6 +49,7 @@
     <div id="wrap">
       <div id='clock-container'>
       <div id='clock'>
+          <div id='center' class='network-line'></div>
           <div id='facebook' class='network-line'>
             <div ng-repeat='post in facebook' class='arm' rotate>
               <div class='circle'></div>
@@ -58,6 +59,8 @@
             <div ng-repeat='post in linkedin' class='arm' rotate>
               <div class='circle'></div>
             </div>
+            <div class='arm clock' rotate='hour' style='width:10px'></div>
+            <div class='arm clock' rotate='minute'></div>
           </div>
         </div>
       </div>
