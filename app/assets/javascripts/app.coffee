@@ -29,7 +29,8 @@ HomeController = ($scope, $window, $http, $cookies) ->
             obj
         $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
         $scope.linkedin  = _.filter posts, (obj) -> obj.service == 'linkedin'
-        $scope.selected_posts = _.compact $scope.posts
+        $scope.posts = _.compact $scope.posts
+        $scope.selected_posts = $scope.posts
 
 angular.module('whellow', ['ngCookies'])
   .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
