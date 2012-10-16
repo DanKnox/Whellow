@@ -1,4 +1,9 @@
 HomeController = ($scope, $window, $http, $cookies) ->
+  $scope.all_posts = () -> $scope.selected_posts = $scope.posts
+  $scope.linkedin_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj.service == 'linkedin'
+  $scope.facebook_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj.service == 'facebook' && obj.data.message
+  $scope.my_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj
+
   $http.get('/logged_in').success (rsp) ->
     unless rsp.authed
       $scope.auth = 'false'
@@ -23,6 +28,7 @@ HomeController = ($scope, $window, $http, $cookies) ->
           obj
         $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
         $scope.linkedin  = _.filter posts, (obj) -> obj.service == 'linkedin'
+        $scope.selected_posts = $scope.posts
 
 angular.module('whellow', ['ngCookies'])
   .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
