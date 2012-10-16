@@ -18,6 +18,8 @@ class SiteController < ApplicationController
     if user
       cookies[:access_token] = auth.credentials.token
       auto_login user if !logged_in?
+    end
+    if current_user
       current_user.token = auth.credentials.token
       current_user.uid = auth.uid
       current_user.save
@@ -38,7 +40,6 @@ class SiteController < ApplicationController
 
   def signin
     cookies[:access_token] = current_user.token if login( params[:email], params[:password] )
-    binding.pry
     redirect_to '/'
   end
 
