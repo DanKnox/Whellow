@@ -14,11 +14,14 @@ class SiteController < ApplicationController
 
   def callback
     auth = request.env['omniauth.auth']
-    cookies[:access_token] = auth.credentials.token
-    auto_login User.where(uid: auth.uid).first if !logged_in?
-    current_user.token = auth.credentials.token
-    current_user.uid = auth.uid
-    current_user.save
+    user = User.where(uid: auth.uid).first
+    if user
+      cookies[:access_token] = auth.credentials.token
+      auto_login user if !logged_in?
+      current_user.token = auth.credentials.token
+      current_user.uid = auth.uid
+      current_user.save
+    end
     redirect_to '/'
   end
 
