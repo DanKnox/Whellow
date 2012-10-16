@@ -1,8 +1,8 @@
 HomeController = ($scope, $window, $http, $cookies) ->
   $scope.all_posts = () -> $scope.selected_posts = $scope.posts
-  $scope.linkedin_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj.service == 'linkedin'
-  $scope.facebook_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj.service == 'facebook' && obj.data.message
-  $scope.my_posts = () -> $scope.selected_posts = _.filter $scope.posts, (obj) -> obj
+  $scope.linkedin_posts = () -> $scope.selected_posts = $scope.linkedin
+  $scope.facebook_posts = () -> $scope.selected_posts = $scope.facebook
+  $scope.my_posts = () -> $scope.selected_posts = $scope.posts
 
   $http.get('/logged_in').success (rsp) ->
     unless rsp.authed
@@ -15,20 +15,21 @@ HomeController = ($scope, $window, $http, $cookies) ->
         $window.location = '/signout'
       $http.get('/posts').success (posts) ->
         $scope.posts = _.map posts, (obj) ->
-          if /@face/.test obj.idr
+          if /@face/.test(obj.idr) && obj.data.message
             obj.username = obj.data.from.name
             obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
             obj.message  = obj.data.message
             obj.service  = 'facebook'
+            obj
           else if /@link/.test obj.idr
             obj.username = obj.data.updateContent.firstName + ' '  + obj.data.updateContent.lastName
             obj.picture  = obj.data.updateContent.pictureUrl
             obj.message  = obj.data.updateContent.currentStatus
             obj.service  = 'linkedin'
-          obj
+            obj
         $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
         $scope.linkedin  = _.filter posts, (obj) -> obj.service == 'linkedin'
-        $scope.selected_posts = $scope.posts
+        $scope.selected_posts = _.compact $scope.posts
 
 angular.module('whellow', ['ngCookies'])
   .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
