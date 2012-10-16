@@ -24,37 +24,11 @@ textarea {
 }
 
 ::-webkit-input-placeholder {
-   color: #fff;
-   text-shadow: 0 1px 0 #000;
-   -moz-text-shadow: 0 1px 0 #000;
-   -webkit-text-shadow: 0 1px 0 #000;
+   color: #a3a3a3;
 
 }
 
 :-moz-placeholder {  
-   color: #fff;
-   text-shadow: 0 1px 0 #000;
-   -moz-text-shadow: 0 1px 0 #000;
-   -webkit-text-shadow: 0 1px 0 #000;
-
-}
-
-#settings ::-webkit-input-placeholder {
-   color: #a3a3a3;
-
-}
-
-#settings :-moz-placeholder  {  
-   color: #a3a3a3;
-
-}
-
-#create_group ::-webkit-input-placeholder {
-   color: #a3a3a3;
-
-}
-
-#create_group :-moz-placeholder  {  
    color: #a3a3a3;
 
 }
@@ -151,9 +125,24 @@ textarea {
 
 }
 
+ul.list_right {
+    float: right;
+    margin: 15px 6px 0 0;
+
+}
+
+.list_right li {
+    display: inline;
+    list-style: none;
+    margin:0 5px 0 0;
+    font-size: 12px;
+    letter-spacing: 0px;
+
+}
+
 ul.list_left {
     float: left;
-    margin: 11px 0 0 -30px;
+    margin: 15px 0 0 -5px;
 
 }
 
@@ -216,6 +205,8 @@ ul.list_left {
 .brown_button:hover {
     text-decoration: none !important;
     background: #3b3535;
+    border: 1px solid #000;
+    color: #fff !important;
     background: -webkit-linear-gradient(top, #3b3535, #1e1a1a);
     background: -moz-linear-gradient(top, #3b3535, #1e1a1a);
     background: -ms-linear-gradient(top, #3b3535, #1e1a1a);
@@ -227,6 +218,59 @@ ul.list_left {
 }
 
 .brown_button:active {
+    background: -webkit-linear-gradient(top, #232323, #232323);
+    background: -moz-linear-gradient(top, #232323, #232323);
+    background: -ms-linear-gradient(top, #232323, #232323);
+    background: -o-linear-gradient(top, #232323, #232323);
+    box-shadow: inset 0px 1px 5px #000, 0px 1px 0px #514d4d;
+    -moz-box-shadow: inset 0px 1px 5px #000, 0px 1px 0px #514d4d;
+    -webkit-box-shadow: inset 0px 1px 5px #000, 0px 1px 0px #514d4d;
+
+}
+
+.blue_button { 
+    color: #fff;
+    text-shadow: 0px 1px 0px #000;
+    -moz-text-shadow: 0px 1px 0px #000;
+    -webkit-text-shadow: 0px 1px 0px #000;
+    text-decoration:none;
+    border-radius: 4px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    font-size: 12px;
+    padding: 5px 15px;
+    background: #3b3535;
+    background: -webkit-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -moz-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -ms-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -o-linear-gradient(top, #3b3535, #1e1a1a);
+    border: solid 1px #000;
+    box-shadow: inset 0px 1px 0px #514d4d, 0 1px 0 #514d4d;
+    -moz-box-shadow: inset 0px 1px 0px #514d4d, 0 1px 0 #514d4d;
+    -webkit-box-shadow: inset 0px 1px 0px #514d4d, 0 1px 0 #514d4d;
+    cursor: pointer;
+    font-weight: normal;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
+
+}
+
+.blue_button:hover {
+    text-decoration: none !important;
+    background: #3b3535;
+    border: 1px solid #000;
+    color: #fff !important;
+    background: -webkit-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -moz-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -ms-linear-gradient(top, #3b3535, #1e1a1a);
+    background: -o-linear-gradient(top, #3b3535, #1e1a1a);
+    box-shadow: inset 0px 1px 0px #514d4d, 0 1px 5px #151515;
+    -moz-box-shadow: inset 0px 1px 0px #514d4d, 0 1px 5px #151515;
+    -webkit-box-shadow: inset 0px 1px 0px #514d4d, 0 1px 5px #151515;
+
+}
+
+.blue_button:active {
     background: -webkit-linear-gradient(top, #232323, #232323);
     background: -moz-linear-gradient(top, #232323, #232323);
     background: -ms-linear-gradient(top, #232323, #232323);
@@ -346,12 +390,15 @@ ul.list_left {
 
 #settings {
     width: 300px;
-    height: 300px;
-    background-color: #fff;
+    height: 250px;
+    background-color: #eeeeee;
     padding: 10px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+    box-shadow: 0 0 10px 0 #000;
+    -moz-box-shadow: 0 0 10px 0 #000;
+    -webkit-box-shadow: 0 0 10px 0 #000;
 
 }
 
@@ -364,17 +411,29 @@ ul.list_left {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    padding: 5px 10px;
+    padding: 13px 10px;
     margin-top: 10px;
     outline: none;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
+
+}
+
+#settings input:focus {
+    box-shadow: 0 0 7px 0 #00A6FC;
+    border: 1px solid #00A6FC;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
 
 }
 
 #settings h1 {
     color: #a3a3a3;
-    font-size: 15px;
+    font-size: 17px;
+    margin-left: 120px;
 
 }
+
 
 #create_group {
     width: 300px;
@@ -420,18 +479,22 @@ ul.list_left {
 
 #create_group h1 {
     color: #a3a3a3;
-    font-size: 15px;
+    font-size: 17px;
+    margin-left: 120px;
 
 }
 
 #signin {
     width: 300px;
-    height: 300px;
-    background-color: #fff;
+    height: 250px;
+    background-color: #eeeeee;
     padding: 10px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+    box-shadow: 0 0 10px 0 #000;
+    -moz-box-shadow: 0 0 10px 0 #000;
+    -webkit-box-shadow: 0 0 10px 0 #000;
 
 }
 
@@ -444,26 +507,40 @@ ul.list_left {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    padding: 5px 10px;
+    padding: 13px 10px;
     margin-top: 10px;
     outline: none;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
+
+}
+
+#signin input:focus {
+    box-shadow: 0 0 7px 0 #00A6FC;
+    border: 1px solid #00A6FC;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
 
 }
 
 #signin h1 {
     color: #a3a3a3;
-    font-size: 15px;
+    font-size: 17px;
+    margin-left: 120px;
 
 }
 
 #signup {
     width: 300px;
-    height: 300px;
-    background-color: #fff;
+    height: 310px;
+    background-color: #eeeeee;
     padding: 10px;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+    box-shadow: 0 0 10px 0 #000;
+    -moz-box-shadow: 0 0 10px 0 #000;
+    -webkit-box-shadow: 0 0 10px 0 #000;
 
 }
 
@@ -476,15 +553,26 @@ ul.list_left {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    padding: 5px 10px;
+    padding: 13px 10px;
     margin-top: 10px;
     outline: none;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
+
+}
+
+#signup input:focus {
+    box-shadow: 0 0 7px 0 #00A6FC;
+    border: 1px solid #00A6FC;
+    -moz-transition:.3s ease-in-out;
+    -webkit-transition:.3s ease-in-out;
 
 }
 
 #signup h1 {
     color: #a3a3a3;
-    font-size: 15px;
+    font-size: 17px;
+    margin-left: 120px;
 
 }
 

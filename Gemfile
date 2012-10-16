@@ -6,6 +6,10 @@ group :development do
   gem 'sqlite3'
 end
 
+group :production do
+  gem 'pg'
+end
+
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
@@ -13,7 +17,6 @@ group :assets do
 end
 
 gem 'mongoid'
-gem 'pg'
 gem 'jquery-rails'
 gem 'puma'
 gem 'sorcery'

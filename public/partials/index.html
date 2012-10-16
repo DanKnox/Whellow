@@ -1,7 +1,7 @@
 <ng-switch on='auth'>
   <div ng-switch-when='false'>
     <div id="header">
-        <ul class="list_left">
+        <ul class="list_right">
           <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#signup').bPopup()">Signup</a></li>
           <li><a class="brown_button" href="javascript:void(0)" onclick="javascript:$('#signin').bPopup()">Signin</a></li>
         </ul>
@@ -16,19 +16,21 @@
             <form action='/signin'>
               <input autocomplete="off" id="user_email" name="email" placeholder="Email" size="30" type="email" />
               <input autocomplete="off" id="user_password" name="password" placeholder="Password" size="30" type="password" />
-              <button class="blue_button" href="/signup">Submit</button>
+              <button class="blue_button" style="padding: 9px 129px; margin-left: 0px; margin-top: 7px;" href="/signup">Submit</button>
             </form>
-            Or, if you forgot your password, you can sign in with:
+            <span style="font-size: 12px; margin-top:5px; margin-left:1px;"> Or, signin with:
             <a href='/auth/singly?service=facebook'>Facebook</a>
             <a href='/auth/singly?service=linkedin'>LinkedIn</a>
+            </span>
         </div>
         <div id='signup' style='display:none'>
+          <h1>Signup</h1>
           <form action='/signup'>
             <input autocomplete="off" id="user_name" name="user[name]" placeholder="Full name" size="30" type="text" />
             <input autocomplete="off" id="user_email" name="user[email]" placeholder="Email" size="30" type="email" />
             <input autocomplete="off" id="user_password" name="user[password]" placeholder="Password" size="30" type="password" />
             <input autocomplete="off" id="user_password_confirmation" name="user[password_confirmation]" placeholder="Retype-Password" size="30" type="password" />
-            <button class="blue_button" href="/signup">Submit</button>
+            <button class="blue_button" style="padding: 9px 129px; margin-left: 0px; margin-top: 7px;" href="/signup">Submit</button>
           </form>
         </div>
     </div>
