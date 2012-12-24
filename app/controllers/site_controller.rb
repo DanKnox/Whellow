@@ -5,7 +5,7 @@ class SiteController < ApplicationController
   end
 
   def posts
-  	since = (Time.now.to_i - 3600) * 1000
+    since = (Time.now.to_i - 3600) * 1000
 
     fb = Koala::Facebook::API.new current_user.facebook_token
     #fb_posts = fb.get_connections('me', 'feed')
