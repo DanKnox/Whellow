@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails'
+gem 'rails', "~> 3.2.9"
 
 group :development do
   gem 'sqlite3'
@@ -16,18 +16,22 @@ group :assets do
   gem 'uglifier'
 end
 
-gem 'mongoid'
 gem 'jquery-rails'
 gem 'puma'
-gem 'sorcery'
+gem 'sorcery', '~> 0.7.13'
 gem 'decent_exposure'
 gem 'inherited_resources'
 gem 'haml'
 gem 'juggernaut'
 gem 'stalker'
 gem 'pry'
+gem 'pry-remote'
 gem 'pony'
 gem 'foreman'
 gem 'httparty'
 gem 'omniauth'
-gem 'omniauth-singly'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-linkedin'
+gem 'koala'
+gem 'twitter', '~> 4.4.2'

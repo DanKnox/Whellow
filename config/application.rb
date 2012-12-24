@@ -1,20 +1,6 @@
 require File.expand_path('../boot', __FILE__)
 
-require 'rails'
-
-%w(
-  action_controller
-  action_mailer
-  active_resource
-  active_record
-  sprockets
-  rails/test_unit
-).each do |framework|
-  begin
-    require "#{framework}/railtie"
-  rescue LoadError
-  end
-end
+require 'rails/all'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line

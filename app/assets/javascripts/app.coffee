@@ -21,6 +21,12 @@ HomeController = ($scope, $window, $http, $cookies) ->
             obj.message  = obj.data.message
             obj.service  = 'facebook'
             obj
+          else if /@twit/.test obj.idr
+            obj.username = obj.data.user.name || obj.data.user.screen_name
+            obj.picture = obj.data.user.profile_image_url
+            obj.message = obj.data.text
+            obj.service = 'twitter'
+            obj
           else if /@link/.test obj.idr
             obj.username = obj.data.updateContent.firstName + ' '  + obj.data.updateContent.lastName
             obj.picture  = obj.data.updateContent.pictureUrl
@@ -28,7 +34,8 @@ HomeController = ($scope, $window, $http, $cookies) ->
             obj.service  = 'linkedin'
             obj
         $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
-        $scope.linkedin  = _.filter posts, (obj) -> obj.service == 'linkedin'
+        $scope.linkedin = _.filter posts, (obj) -> obj.service == 'linkedin'
+        $scope.twitter  = _.filter posts, (obj) -> obj.service == 'twitter'
         $scope.posts = _.compact $scope.posts
         $scope.selected_posts = $scope.posts
 
@@ -45,7 +52,7 @@ angular.module('whellow', ['ngCookies'])
     console.log attrs.rotate
     if attrs.rotate == 'minute'
       rotation = 6 * minute
-    else
+    else if attrs.rotate == 'hour'
       rotation = (30 * parseInt(hour)) + (30 / (1.66 * parseInt(minute)))
     rotation -= 360 if rotation > 360
     element.animate { rotation: rotation },
