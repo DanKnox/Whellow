@@ -5,6 +5,7 @@
 #   git config --global core.excludesfile ~/.gitignore_global
 .DS_Store
 run.sh
+app_config.rb
 # Ignore bundler config
 /.bundle
 .sass-cache
