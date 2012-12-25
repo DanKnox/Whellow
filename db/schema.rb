@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121224032224) do
+ActiveRecord::Schema.define(:version => 20121225005705) do
 
   create_table "users", :force => true do |t|
     t.string   "email"
@@ -31,6 +31,8 @@ ActiveRecord::Schema.define(:version => 20121224032224) do
     t.string   "twitter_token"
     t.string   "linkedin_token"
     t.string   "twitter_secret"
+    t.string   "facebook_avatar"
+    t.string   "twitter_avatar"
   end
 
   add_index "users", ["remember_me_token"], :name => "index_users_on_remember_me_token"

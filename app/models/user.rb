@@ -3,7 +3,17 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :token, :uid, :password
 
   def facebook
-    Koala::Facebook::API.new(self.facebook_token).get_connections('me', 'feed')
+    posts = Koala::Facebook::API.new(self.facebook_token).get_connections('me', 'home')
+    posts.map! do |post|
+      {
+        username: post['from']['name'],
+        picture: "http://graph.facebook.com/#{ post['from']['id'] }/picture?type=square",
+        message: post['message'],
+        type: post['status_type'],
+        service: 'facebook'
+      }
+    end
+    posts.select { |post| post[:message] }
   end
 
   def twitter

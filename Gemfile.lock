@@ -53,6 +53,8 @@ GEM
     has_scope (0.5.1)
     hashie (1.2.0)
     hike (1.2.1)
+    hobo_support (2.0.0.pre7)
+      rails (~> 3.2.0)
     httparty (0.9.0)
       multi_json (~> 1.0)
       multi_xml
@@ -187,6 +189,7 @@ DEPENDENCIES
   decent_exposure
   foreman
   haml
+  hobo_support (~> 2.0.0.pre5)
   httparty
   inherited_resources
   jquery-rails

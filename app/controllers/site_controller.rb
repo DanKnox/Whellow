@@ -9,19 +9,21 @@ class SiteController < ApplicationController
 
   def posts
     since = (Time.now.to_i - 3600) * 1000
-    binding.pry
     posts = fb + twitter
     render json: posts.sort_by{|p|p[:at]}
   end
 
   def callback
     auth = request.env['omniauth.auth']
-    unless user = User.where({:"#{auth.provider}_token" => auth.credentials.token}).first
+    if user = User.where({:"#{auth.provider}_token" => auth.credentials.token}).first
+      auto_login user
+    else
       user = User.new
       user.name = auth.info.name
       user.save
       auto_login user
     end
+    current_user["#{auth.provider}_avatar"] = auth.info.image
     current_user["#{auth.provider}_token"] = auth.credentials.token
     current_user["#{auth.provider}_secret"] = auth.credentials.secret if auth.provider == 'twitter'
     current_user.save
