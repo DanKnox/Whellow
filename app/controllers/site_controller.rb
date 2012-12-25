@@ -1,6 +1,3 @@
-require 'hmac-sha1'
-require 'base64'
-
 class SiteController < ApplicationController
 
 
@@ -8,9 +5,8 @@ class SiteController < ApplicationController
   end
 
   def posts
-    since = (Time.now.to_i - 3600) * 1000
-    posts = fb + twitter
-    render json: posts.sort_by{|p|p[:at]}
+    posts = current_user.facebook + current_user.twitter
+    render json: posts.sort_by{|p|-p[:at]}
   end
 
   def callback

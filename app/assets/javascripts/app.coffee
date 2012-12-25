@@ -14,36 +14,17 @@ HomeController = ($scope, $window, $http, $cookies) ->
         delete $cookies.access_token
         $window.location = '/signout'
       $http.get('/posts').success (posts) ->
-        $scope.posts = _.map posts, (obj) ->
-          if /@face/.test(obj.idr) && obj.data.message
-            obj.username = obj.data.from.name
-            obj.picture  = 'http://graph.facebook.com/' + obj.data.from.id + '/picture'
-            obj.message  = obj.data.message
-            obj.service  = 'facebook'
-            obj
-          else if /@twit/.test obj.idr
-            obj.username = obj.data.user.name || obj.data.user.screen_name
-            obj.picture = obj.data.user.profile_image_url
-            obj.message = obj.data.text
-            obj.service = 'twitter'
-            obj
-          else if /@link/.test obj.idr
-            obj.username = obj.data.updateContent.firstName + ' '  + obj.data.updateContent.lastName
-            obj.picture  = obj.data.updateContent.pictureUrl
-            obj.message  = obj.data.updateContent.currentStatus
-            obj.service  = 'linkedin'
-            obj
-        $scope.facebook = _.filter posts, (obj) -> obj.service == 'facebook' && obj.data.message
-        $scope.linkedin = _.filter posts, (obj) -> obj.service == 'linkedin'
-        $scope.twitter  = _.filter posts, (obj) -> obj.service == 'twitter'
-        $scope.posts = _.compact $scope.posts
+        $scope.posts = _.filter posts, (post) -> post.at > moment().unix() - 3600
+        $scope.facebook = _.filter $scope.posts, (obj) -> obj.service == 'facebook'
+        $scope.linkedin = _.filter $scope.posts, (obj) -> obj.service == 'linkedin'
+        $scope.twitter  = _.filter $scope.posts, (obj) -> obj.service == 'twitter'
         $scope.selected_posts = $scope.posts
 
 angular.module('whellow', ['ngCookies'])
-  .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at).fromNow() )
+  .directive('moment', () -> (scope, element, attrs) -> element.html moment(scope.post.at * 1000).fromNow() )
   .directive('rotate', () -> (scope, element, attrs) ->
     if scope.post
-      [hour, minute] = moment(scope.post.at).format('h m').split(' ')
+      [hour, minute] = moment(scope.post.at * 1000).format('h m').split(' ')
     else
       date = new Date()
       hour = date.getHours()
